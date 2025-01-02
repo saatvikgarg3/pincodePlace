@@ -53,19 +53,19 @@ export const handleAddUser = createHandler(newUserSchema, async (req, res) => {
 
   const { user: addedUser, code } = await addUser(user);
 
-  const status = await sendVerificationEmail(
-    process.env.API_BASE_URL,
-    addedUser.name,
-    addedUser.email,
-    code,
-  );
+  // const status = await sendVerificationEmail(
+  //   process.env.API_BASE_URL,
+  //   addedUser.name,
+  //   addedUser.email,
+  //   code,
+  // );
 
-  if (status !== 200) {
-    await deleteUser(addedUser.email);
-    throw new BackendError('INTERNAL_ERROR', {
-      message: 'Failed to signup user',
-    });
-  }
+  // if (status !== 200) {
+  //   await deleteUser(addedUser.email);
+  //   throw new BackendError('INTERNAL_ERROR', {
+  //     message: 'Failed to signup user',
+  //   });
+  // }
 
   res.status(201).json(addedUser);
 });
